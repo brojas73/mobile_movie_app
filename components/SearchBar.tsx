@@ -4,7 +4,7 @@ import { icons } from '@/constants/icons'
 import { PrivateValueStore } from '@react-navigation/native'
 
 interface Props {
-  value: string
+  value?: string
   placeholder: string
   onPress?: () => void
   onChangeText?: (text: string) => void
