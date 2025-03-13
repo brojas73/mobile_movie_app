@@ -1,5 +1,5 @@
 import { View, Text, Image, FlatList, ActivityIndicator } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { images } from '@/constants/images'
 import MovieCard from '@/components/MovieCard'
 import useFetch from '@/services/useFetch'
@@ -31,15 +31,11 @@ const Search = () => {
     if (movies?.length > 0 && movies?.[0]) {
       updateSearchCount(searchQuery, movies[0])
     }
-}, [movies])
+  }, [movies])
 
   return (
     <View className='flex-1 bg-primary'>
-      <Image 
-        source={images.bg}
-        className='flex-1 absolute w-full z-0'
-        resizeMode='cover'
-      />
+      <Image source={images.bg} className='flex-1 absolute w-full z-0' resizeMode='cover' />
 
       <FlatList 
         data={movies}
@@ -62,33 +58,21 @@ const Search = () => {
             </View>
           
             <View className='my-5'>
-              <SearchBar 
-                value={searchQuery}
-                onChangeText={(text: string) => setSearchQuery(text)}
-                placeholder='Search for a movie'
-              />
+              <SearchBar value={searchQuery} onChangeText={(text: string) => setSearchQuery(text)} placeholder='Search for a movie' />
             </View>
 
             {loading && (
-              <ActivityIndicator
-                size='large'
-                color='#0000FF'
-                className='my-10 self-center'
-              />
+              <ActivityIndicator size='large' color='#0000FF' className='my-10 self-center' />
             )}
 
             {error && (
-              <Text className='text-red-500 px-5 my-3'>
-                Error: {error.message}
-              </Text>
+              <Text className='text-red-500 px-5 my-3'>Error: {error.message}</Text>
             )}
 
             {!loading && !error && searchQuery.trim() && movies?.length > 0 && (
               <Text className='text-white text-xl font-bold'>
                 Search Results for {' '}
-                <Text className='text-accent'>
-                  {searchQuery}
-                </Text>
+                <Text className='text-accent'>{searchQuery}</Text>
               </Text>
             )}
           </>
@@ -107,7 +91,6 @@ const Search = () => {
           ) : null
         }
       />
-
     </View>
   )
 }
